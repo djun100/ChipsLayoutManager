@@ -1,7 +1,3 @@
-plugins {
-    id "me.tatarka.retrolambda" version "3.4.0"
-}
-
 apply plugin: 'com.android.application'
 
 android {
@@ -14,7 +10,6 @@ android {
         }
     }
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     testBuildType "development"
     defaultConfig {
         applicationId "com.beloo.chipslayoutmanager.sample"
@@ -45,11 +40,7 @@ android {
     }
 }
 
-retrolambda {
-    javaVersion JavaVersion.VERSION_1_7
-}
-
-def supportVersion = "25+";
+def supportVersion = "28+";
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -89,4 +80,3 @@ dependencies {
 }
 
 
-apply plugin: 'com.google.gms.google-services'
