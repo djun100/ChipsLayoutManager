@@ -9,16 +9,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
-import java.util.List;
-
-import com.beloo.chipslayoutmanager.sample.ui.OnRemoveListener;
+import com.beloo.chipslayoutmanager.sample.CircleTransform;
 import com.beloo.chipslayoutmanager.sample.R;
 import com.beloo.chipslayoutmanager.sample.entity.ChipsEntity;
-import com.beloo.chipslayoutmanager.sample.CircleTransform;
+import com.beloo.chipslayoutmanager.sample.ui.OnRemoveListener;
+import com.bumptech.glide.Glide;
+import com.cy.itemtouchhelper.ItemTouchHelperAdapter;
 
-public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder> {
+import java.util.Collections;
+import java.util.List;
+
+public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder> implements ItemTouchHelperAdapter {
 
     private List<ChipsEntity> chipsEntities;
     private OnRemoveListener onRemoveListener;
@@ -49,6 +50,18 @@ public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder>
     @Override
     public int getItemCount() {
         return chipsEntities.size();
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        Collections.swap(chipsEntities, fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

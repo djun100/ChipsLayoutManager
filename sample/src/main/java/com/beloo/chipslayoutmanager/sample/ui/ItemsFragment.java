@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +14,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.beloo.chipslayoutmanager.sample.R;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
+import com.cy.itemtouchhelper.ItemTouchHelperAdapter;
+import com.cy.itemtouchhelper.SimpleItemTouchHelperCallback;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.beloo.chipslayoutmanager.sample.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -116,6 +119,9 @@ public class ItemsFragment extends Fragment {
         rvTest.getRecycledViewPool().setMaxRecycledViews(1, 10);
         rvTest.setAdapter(adapter);
 
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback((ItemTouchHelperAdapter) adapter);
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(rvTest);
     }
 
     private OnRemoveListener onRemoveListener = new OnRemoveListener() {
