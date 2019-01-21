@@ -46,7 +46,7 @@ public class BottomSheetDialogFragment extends android.support.design.widget.Bot
 //        List<String> items = itemsFactory.getDoubleItems();
         List<String> items = itemsFactory.getItems();
 
-        adapter = itemsFactory.createAdapter(items, null);
+        adapter = itemsFactory.createAdapter(rvBottomSheet,items, null);
         return adapter;
     }
 

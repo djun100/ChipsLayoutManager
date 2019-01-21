@@ -45,14 +45,8 @@ android {
 def supportVersion = "28+";
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    api 'com.github.djun100:Android-ItemTouchHelper-Demo:3f4eb5c'
 
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
-
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile "com.android.support:support-annotations:$supportVersion"
-    androidTestCompile 'pl.pragmatists:JUnitParams:1.0.5'
+    compileOnly "com.android.support:appcompat-v7:$supportVersion"
+    compileOnly "com.android.support:recyclerview-v7:$supportVersion"
 }

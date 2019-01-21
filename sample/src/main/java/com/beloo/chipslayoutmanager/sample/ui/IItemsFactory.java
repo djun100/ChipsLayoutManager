@@ -18,5 +18,5 @@ public interface IItemsFactory<Item> {
 
     Item createOneItemForPosition(int position);
 
-    RecyclerView.Adapter<? extends RecyclerView.ViewHolder> createAdapter(List<Item> items, OnRemoveListener onRemoveListener);
+    RecyclerView.Adapter<? extends RecyclerView.ViewHolder> createAdapter(RecyclerView recyclerView,List<Item> items, OnRemoveListener onRemoveListener);
 }

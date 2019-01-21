@@ -3,6 +3,7 @@ package com.beloo.chipslayoutmanager.sample.ui.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -14,7 +15,8 @@ import com.beloo.chipslayoutmanager.sample.R;
 import com.beloo.chipslayoutmanager.sample.entity.ChipsEntity;
 import com.beloo.chipslayoutmanager.sample.ui.OnRemoveListener;
 import com.bumptech.glide.Glide;
-import com.cy.itemtouchhelper.ItemTouchHelperAdapter;
+import com.cy.draghelper.ItemTouchHelperAdapter;
+import com.cy.draghelper.UtilDrag;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,9 +27,11 @@ public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder>
     private OnRemoveListener onRemoveListener;
     private boolean isShowingPosition;
 
-    public ChipsAdapter(List<ChipsEntity> chipsEntities, OnRemoveListener onRemoveListener) {
+    public ChipsAdapter(List<ChipsEntity> chipsEntities,
+                        OnRemoveListener onRemoveListener,RecyclerView recyclerView) {
         this.chipsEntities = chipsEntities;
         this.onRemoveListener = onRemoveListener;
+        UtilDrag.attach(this,recyclerView);
     }
 
     public ChipsAdapter(List<ChipsEntity> chipsEntities, OnRemoveListener onRemoveListener, boolean isShowingPosition) {
@@ -45,6 +49,13 @@ public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.bindItem(chipsEntities.get(position));
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                UtilDrag.doTouch(ChipsAdapter.this,holder,event);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -53,10 +64,16 @@ public class ChipsAdapter extends  RecyclerView.Adapter<ChipsAdapter.ViewHolder>
     }
 
     @Override
-    public boolean onItemMove(int fromPosition, int toPosition) {
+    public boolean onDrag(int fromPosition, int toPosition) {
         Collections.swap(chipsEntities, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return true;
+
+    }
+
+    @Override
+    public void onDrop(int fromPosition, int toPosition) {
+
     }
 
     @Override

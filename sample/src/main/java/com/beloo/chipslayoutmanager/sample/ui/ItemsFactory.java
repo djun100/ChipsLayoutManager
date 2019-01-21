@@ -102,7 +102,7 @@ public class ItemsFactory implements IItemsFactory<String> {
     }
 
     @Override
-    public RecyclerView.Adapter<? extends RecyclerView.ViewHolder> createAdapter(List<String> items, OnRemoveListener onRemoveListener) {
-        return new RecyclerViewAdapter(items, onRemoveListener);
+    public RecyclerView.Adapter<? extends RecyclerView.ViewHolder> createAdapter(RecyclerView recyclerView,List<String> items, OnRemoveListener onRemoveListener) {
+        return new RecyclerViewAdapter(items, onRemoveListener,recyclerView);
     }
 }

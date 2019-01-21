@@ -22,7 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<String> items;
     private OnRemoveListener onRemoveListener;
 
-    public RecyclerViewAdapter(List<String> items, OnRemoveListener onRemoveListener) {
+    public RecyclerViewAdapter(List<String> items, OnRemoveListener onRemoveListener,RecyclerView recyclerView) {
         this.items = items;
         this.onRemoveListener = onRemoveListener;
     }

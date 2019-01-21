@@ -122,7 +122,7 @@ class ChipsFactory implements IItemsFactory<ChipsEntity> {
     }
 
     @Override
-    public RecyclerView.Adapter<? extends RecyclerView.ViewHolder> createAdapter(List<ChipsEntity> chipsEntities, OnRemoveListener onRemoveListener) {
-        return new ChipsAdapter(chipsEntities, onRemoveListener);
+    public RecyclerView.Adapter<? extends RecyclerView.ViewHolder> createAdapter(RecyclerView recyclerView,List<ChipsEntity> chipsEntities, OnRemoveListener onRemoveListener) {
+        return new ChipsAdapter(chipsEntities, onRemoveListener,recyclerView);
     }
 }
