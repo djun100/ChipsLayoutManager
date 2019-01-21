@@ -45,7 +45,7 @@ android {
 def supportVersion = "28+";
 
 dependencies {
-    api 'com.github.djun100:Android-ItemTouchHelper-Demo:df11175'
+    api 'com.github.djun100:Android-ItemTouchHelper-Demo:1e3edf2'
 
     compileOnly "com.android.support:appcompat-v7:$supportVersion"
     compileOnly "com.android.support:recyclerview-v7:$supportVersion"
