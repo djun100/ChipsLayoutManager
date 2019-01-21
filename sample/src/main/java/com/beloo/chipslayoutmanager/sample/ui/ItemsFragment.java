@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import com.beloo.chipslayoutmanager.sample.R;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
+import com.cy.draghelper.ItemTouchHelperAdapter;
+import com.cy.draghelper.UtilDrag;
+import com.cy.view.UtilScreen;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -97,9 +100,8 @@ public class ItemsFragment extends Fragment {
         ChipsLayoutManager spanLayoutManager = ChipsLayoutManager.newBuilder(getContext())
                 .setOrientation(ChipsLayoutManager.HORIZONTAL)
                 .build();
-
-        rvTest.addItemDecoration(new SpacingItemDecoration(getResources().getDimensionPixelOffset(R.dimen.item_space),
-                getResources().getDimensionPixelOffset(R.dimen.item_space)));
+        rvTest.addItemDecoration(new SpacingItemDecoration(UtilScreen.dp(10),UtilScreen.dp(10)));
+        rvTest.setLayoutManager(spanLayoutManager);
 
         positions = new LinkedList<>();
         for (int i = 0; i< items.size(); i++) {
@@ -111,7 +113,6 @@ public class ItemsFragment extends Fragment {
         spinnerPosition.setAdapter(spinnerAdapter);
         spinnerMoveTo.setAdapter(spinnerAdapterMoveTo);
 
-        rvTest.setLayoutManager(spanLayoutManager);
         rvTest.getRecycledViewPool().setMaxRecycledViews(0, 10);
         rvTest.getRecycledViewPool().setMaxRecycledViews(1, 10);
         rvTest.setAdapter(adapter);
@@ -202,6 +203,13 @@ public class ItemsFragment extends Fragment {
     public void onScrollClicked(View view) {
 //        rvTest.scrollBy(0, 500);
         rvTest.scrollToPosition(spinnerPosition.getSelectedItemPosition());
+    }
+
+    private boolean enableDrag=true;
+    @OnClick(R.id.btnEnableDrag)
+    public void onDragToggle(View view){
+        enableDrag=!enableDrag;
+        UtilDrag.enableDrag((ItemTouchHelperAdapter) adapter,enableDrag);
     }
 
     @OnClick(R.id.btnInsert)

@@ -63,6 +63,15 @@
             android:layout_toEndOf="@+id/btnMove"
             android:layout_alignParentBottom="true"
             />
+        <Button
+            android:id="@+id/btnEnableDrag"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="DragToggle"
+            android:layout_toRightOf="@+id/btnScroll"
+            android:layout_toEndOf="@+id/btnScroll"
+            android:layout_alignParentBottom="true"
+            />
 
         <Spinner
             android:id="@+id/spinnerPosition"

@@ -1,7 +1,26 @@
 # simple usage
-```JAVA
+```GRADLE
+allprojects {
+	repositories {
+		jcenter()
+		maven { url "https://jitpack.io" }
+	}
+}
+implementation 'com.github.djun100:ChipsLayoutManager:-SNAPSHOT'
 
 ```
+```JAVA
+        ChipsLayoutManager spanLayoutManager = ChipsLayoutManager.newBuilder(getContext())
+                .setOrientation(ChipsLayoutManager.HORIZONTAL)
+                .build();
+        rvTest.addItemDecoration(new SpacingItemDecoration(UtilScreen.dp(10),UtilScreen.dp(10)));
+        rvTest.setLayoutManager(spanLayoutManager);
+
+...
+        //enable or disableDrag
+        UtilDrag.enableDrag((ItemTouchHelperAdapter) adapter,enableDrag);
+```
+
 # ChipsLayoutManager <img alt="ChipsLayoutManager is an android library" src="https://www.cleveroad.com/public/comercial/label-android.svg" height="19"> [![minSdk for ChipsLayoutManager](https://img.shields.io/badge/minSdk-15-green.svg)](#) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ChipsLayoutManager-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/4568#)
 ![ChipsLayoutManager for RecyclerView. Custom layout manager for RecyclerView](/images/header.png)
 
