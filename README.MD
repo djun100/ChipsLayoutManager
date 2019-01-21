@@ -19,6 +19,47 @@ implementation 'com.github.djun100:ChipsLayoutManager:-SNAPSHOT'
 ...
         //enable or disableDrag
         UtilDrag.enableDrag((ItemTouchHelperAdapter) adapter,enableDrag);
+
+...
+public class GroupAdapter extends BaseRecyclerAdapter<GroupPo> implements ItemTouchHelperAdapter {
+
+    public GroupAdapter(RecyclerView recyclerView, @Nullable List data) {
+        super(recyclerView, data);
+        UtilDrag.attach(this,recyclerView);
+    }
+
+    @Override
+    protected void convert(RecyclerAdapterHelper helper, GroupPo item, int pos, int viewTypeAndLayoutRes, final RecyclerView.ViewHolder holder) {
+        ImageButton ibClose=helper.getView(R.id.ibClose);
+        ibClose.setVisibility(UtilDrag.isDragMode(this) ?View.VISIBLE:View.GONE);
+
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                UtilDrag.doTouch(GroupAdapter.this,holder,event);
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onDrag(int fromPosition, int toPosition) {
+        Collections.swap(getAll(), fromPosition, toPosition);
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
+    //commit data
+    @Override
+    public void onDrop(int fromPosition, int toPosition) {
+
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+
+    }
+}
 ```
 
 # ChipsLayoutManager <img alt="ChipsLayoutManager is an android library" src="https://www.cleveroad.com/public/comercial/label-android.svg" height="19"> [![minSdk for ChipsLayoutManager](https://img.shields.io/badge/minSdk-15-green.svg)](#) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ChipsLayoutManager-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/4568#)
